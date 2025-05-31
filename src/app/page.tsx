@@ -1,29 +1,38 @@
 "use client";
-import React from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
+import { useFormStoreWithShallow } from "./formStore";
 
 export default function Home() {
-  const [form, setForm] = React.useState({ email: "", senha: "" });
+  const [email, senha, setField, reset] = useFormStoreWithShallow((state) => [
+    state.email,
+    state.senha,
+    state.setField,
+    state.reset,
+  ]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setField(e.target.name as "email" | "senha", e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form);
+    console.log({ email, senha });
+    // reset(); // descomente se quiser limpar após submit
   };
 
   return (
     <div className="max-w-sm mx-auto mt-10 p-6 border border-gray-200 rounded-lg shadow bg-white">
-      <h2 className="text-center mb-6 text-2xl font-bold text-gray-800">Login</h2>
+      <h2 className="text-center mb-6 text-2xl font-bold text-gray-800">
+        Login
+      </h2>
       <form onSubmit={handleSubmit}>
         <Input
           label="E-mail"
           name="email"
           type="email"
-          value={form.email}
+          value={email}
           onChange={handleChange}
           autoComplete="username"
         />
@@ -31,7 +40,7 @@ export default function Home() {
           label="Senha"
           name="senha"
           type="password"
-          value={form.senha}
+          value={senha}
           onChange={handleChange}
           autoComplete="current-password"
         />
