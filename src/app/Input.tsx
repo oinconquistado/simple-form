@@ -9,24 +9,20 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const Input: React.FC<InputProps> = ({ label, id, type, value, ...props }) => {
   const inputId = id || React.useId();
 
+  if(type === "email") console.log(`Input with type="email"`);
+
   return (
-    <div style={{ marginBottom: 16 }}>
+    <div className="mb-4">
       <label
         htmlFor={inputId}
-        style={{ display: "block", marginBottom: 4, fontWeight: 500 }}
+        className="block mb-1 font-medium text-gray-700"
       >
         {label}
       </label>
       <input
-    //    id={inputId}
+        id={inputId}
         type={type || "text"}
-        style={{
-          padding: "8px 12px",
-          border: "1px solid #ccc",
-          borderRadius: 4,
-          width: "100%",
-          fontSize: 16,
-        }}
+        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
         value={value || ""}
         {...props}
       />
