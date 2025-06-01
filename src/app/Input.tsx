@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-export const Input: React.FC<InputProps> = ({ label, id, type, value, ...props }) => {
+export const Input = memo(function Input({ label, id, type, value, name, ...props }: InputProps) {
   const inputId = id || React.useId();
-
+  
   if(type === "email") console.log(`Input with type="email"`);
 
   return (
@@ -24,8 +24,9 @@ export const Input: React.FC<InputProps> = ({ label, id, type, value, ...props }
         type={type || "text"}
         className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
         value={value || ""}
+        name={name}
         {...props}
       />
     </div>
   );
-};
+});
