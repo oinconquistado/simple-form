@@ -44,6 +44,12 @@ export default function Home() {
           </Button>
         </div>
       </form>
+
+      <div>
+        <p>Valores</p>
+        <p>Email: {form.email}</p>
+        <p>Senha: {form.senha}</p>
+      </div>
     </div>
   );
 }
