@@ -16,7 +16,8 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-sm mx-auto mt-10 p-6 border border-gray-200 rounded-lg shadow bg-white">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="max-w-lg min-w-sm mx-auto mt-10 p-6 border border-gray-200 rounded-lg shadow bg-white">
       <h2 className="text-center mb-6 text-2xl font-bold text-gray-800">Login</h2>
       <form onSubmit={handleSubmit}>
         <Input
@@ -50,6 +51,7 @@ export default function Home() {
         <p>Email: {form.email}</p>
         <p>Senha: {form.senha}</p>
       </div>
+    </div>
     </div>
   );
 }
